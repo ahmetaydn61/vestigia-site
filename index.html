@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vestigia — Uzaktan Algılama ile Anomali Tespiti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1120;
+    --bg-panel: #10182B;
+    --bg-panel-2: #141F38;
+    --line: #223052;
+    --text: #E8ECF4;
+    --text-dim: #8B96AC;
+    --text-faint: #55617A;
+    --amber: #E8A33D;
+    --teal: #4FA8A0;
+    --font-head: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+
+  /* subtle scanline background texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity:0.05;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,17,32,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1160px; margin:0 auto;
+  }
+  .logo{
+    font-family:var(--font-head); font-weight:700; font-size:1.35rem;
+    letter-spacing:0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .mark{
+    width:10px; height:10px; border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 12px 2px rgba(232,163,61,0.6);
+  }
+  .navlinks{display:flex; gap:36px; align-items:center;}
+  .navlinks a{
+    font-size:0.95rem; color:var(--text-dim);
+    transition:color 0.2s;
+  }
+  .navlinks a:hover{color:var(--text);}
+  .btn{
+    display:inline-block;
+    padding:11px 22px;
+    border-radius:3px;
+    font-size:0.92rem;
+    font-weight:500;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:all 0.2s;
+  }
+  .btn-primary{
+    background:var(--amber);
+    color:#1A1305;
+  }
+  .btn-primary:hover{background:#f2b458;}
+  .btn-outline{
+    border-color:var(--line);
+    color:var(--text);
+  }
+  .btn-outline:hover{border-color:var(--teal); color:var(--teal);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 80px;
+    position:relative; z-index:1;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--teal);
+    margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow .dash{width:24px; height:1px; background:var(--teal); display:inline-block;}
+  h1{
+    font-family:var(--font-head);
+    font-size:3.1rem;
+    line-height:1.12;
+    font-weight:600;
+    color:#fff;
+    max-width:11.5ch;
+  }
+  .hero p.lead{
+    margin-top:24px;
+    font-size:1.1rem;
+    color:var(--text-dim);
+    max-width:46ch;
+  }
+  .hero-cta{
+    margin-top:36px;
+    display:flex; gap:14px;
+  }
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1;
+  }
+
+  /* ---------- SOURCES STRIP ---------- */
+  .sources{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:22px 0;
+  }
+  .sources .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+  }
+  .sources .label{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--text-faint);
+    white-space:nowrap;
+  }
+  .source-list{
+    display:flex; gap:34px; flex-wrap:wrap;
+  }
+  .source-list span{
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    color:var(--text-dim);
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:104px 0;}
+  .section-head{max-width:56ch; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  h2{
+    font-family:var(--font-head);
+    font-size:2.1rem;
+    font-weight:600;
+    color:#fff;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--text-dim);
+    font-size:1.02rem;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services{display:flex; flex-direction:column;}
+  .service-row{
+    display:grid;
+    grid-template-columns:0.4fr 1fr 1fr;
+    gap:32px;
+    padding:40px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .service-row:last-child{border-bottom:1px solid var(--line);}
+  .service-tag{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--amber);
+    padding-top:4px;
+  }
+  .service-row h3{
+    font-family:var(--font-head);
+    font-size:1.4rem;
+    font-weight:600;
+    color:#fff;
+    margin-bottom:12px;
+  }
+  .service-row p{color:var(--text-dim); font-size:0.98rem;}
+  .service-detail{color:var(--text-faint); font-size:0.92rem;}
+  .service-detail ul{list-style:none; margin-top:4px;}
+  .service-detail li{
+    padding-left:16px;
+    position:relative;
+    margin-bottom:6px;
+  }
+  .service-detail li::before{
+    content:"";
+    position:absolute; left:0; top:0.6em;
+    width:5px; height:5px;
+    background:var(--teal);
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-list{display:flex; flex-direction:column;}
+  .process-item{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:28px;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .process-item:last-child{border-bottom:1px solid var(--line);}
+  .process-num{
+    font-family:var(--font-mono);
+    font-size:1.6rem;
+    color:var(--text-faint);
+  }
+  .process-item h4{
+    font-family:var(--font-head);
+    font-size:1.1rem;
+    color:#fff;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .process-item p{color:var(--text-dim); font-size:0.95rem; max-width:64ch;}
+
+  /* ---------- CAPABILITIES GRID ---------- */
+  .cap-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .cap-cell{
+    background:var(--bg-panel);
+    padding:28px 26px;
+  }
+  .cap-cell .cap-label{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--teal);
+    margin-bottom:10px;
+  }
+  .cap-cell p{font-size:0.92rem; color:var(--text-dim);}
+
+  /* ---------- CASE STUDY ---------- */
+  .case-block{
+    display:grid;
+    grid-template-columns:0.4fr 1fr;
+    gap:32px;
+    padding:44px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .case-block:last-child{border-bottom:1px solid var(--line);}
+  .case-tag{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--amber);
+    padding-top:4px;
+  }
+  .case-block h3{
+    font-family:var(--font-head);
+    font-size:1.25rem;
+    font-weight:600;
+    color:#fff;
+    margin-bottom:10px;
+  }
+  .case-block p{color:var(--text-dim); font-size:0.95rem; max-width:64ch; margin-bottom:20px;}
+  .case-img{
+    width:100%;
+    border:1px solid var(--line);
+    border-radius:2px;
+    display:block;
+  }
+  .case-note{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--text-faint);
+    margin-top:10px;
+  }
+
+  /* ---------- AUDIENCE ---------- */
+  .audience-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  .audience-card{
+    border:1px solid var(--line);
+    padding:32px 28px;
+    background:linear-gradient(180deg, var(--bg-panel) 0%, var(--bg) 100%);
+  }
+  .audience-card h4{
+    font-family:var(--font-head);
+    font-size:1.1rem;
+    color:#fff;
+    margin-bottom:10px;
+  }
+  .audience-card p{font-size:0.92rem; color:var(--text-dim);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-panel{
+    border:1px solid var(--line);
+    background:var(--bg-panel);
+    padding:56px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+  .contact-panel h2{margin-bottom:16px;}
+  .contact-panel .lead{color:var(--text-dim); font-size:1rem; max-width:38ch;}
+  .contact-points{margin-top:32px; display:flex; flex-direction:column; gap:16px;}
+  .contact-point{display:flex; gap:12px; font-size:0.92rem; color:var(--text-dim);}
+  .contact-point .dot{color:var(--amber); font-family:var(--font-mono);}
+  form{display:flex; flex-direction:column; gap:16px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  label{font-size:0.82rem; color:var(--text-faint); font-family:var(--font-mono);}
+  input, textarea, select{
+    background:var(--bg);
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:12px 14px;
+    font-family:var(--font-body);
+    font-size:0.95rem;
+    border-radius:2px;
+  }
+  input:focus, textarea:focus, select:focus{
+    outline:none;
+    border-color:var(--teal);
+  }
+  textarea{resize:vertical; min-height:90px;}
+  form .btn{margin-top:6px; border:none; cursor:pointer; width:fit-content;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  footer .fine{font-size:0.85rem; color:var(--text-faint);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-visual{max-width:360px; margin:0 auto;}
+    h1{font-size:2.3rem; max-width:none;}
+    .service-row{grid-template-columns:1fr; gap:12px;}
+    .case-block{grid-template-columns:1fr; gap:12px;}
+    .cap-grid{grid-template-columns:1fr;}
+    .audience-grid{grid-template-columns:1fr;}
+    .contact-panel{grid-template-columns:1fr; padding:32px 24px;}
+    .navlinks{display:none;}
+    .process-item{grid-template-columns:48px 1fr;}
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .scanline, .pulse{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="mark"></span>Vestigia</div>
+    <nav class="navlinks">
+      <a href="#hizmetler">Hizmetler</a>
+      <a href="#surec">Süreç</a>
+      <a href="#teknoloji">Teknoloji</a>
+      <a href="#vaka">Örnek Çıktı</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <a href="#iletisim" class="btn btn-primary">Teklif Al</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="dash"></span>UZAKTAN ALGILAMA · ANOMALİ TESPİTİ</div>
+      <h1>Yeraltındaki izleri, kazmadan önce görün.</h1>
+      <p class="lead">Uydu görüntüsü, dijital yükseklik verisi ve makine öğrenmesini birleştirerek arkeolojik yerleşim izlerini ve jeolojik alterasyon alanlarını saha çalışmasından önce haritalıyoruz.</p>
+      <div class="hero-cta">
+        <a href="#iletisim" class="btn btn-primary">Demo Talep Et</a>
+        <a href="#surec" class="btn btn-outline">Yöntemi İncele</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#4FA8A0" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#4FA8A0" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="sweepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#E8A33D" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#E8A33D" stop-opacity="0.35"/>
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="200" r="190" fill="url(#glow)"/>
+        <g stroke="#223052" stroke-width="1" fill="none">
+          <circle cx="200" cy="200" r="60"/>
+          <circle cx="200" cy="200" r="110"/>
+          <circle cx="200" cy="200" r="160"/>
+        </g>
+        <g stroke="#1A2440" stroke-width="1">
+          <line x1="200" y1="10" x2="200" y2="390"/>
+          <line x1="10" y1="200" x2="390" y2="200"/>
+        </g>
+        <!-- rotating sweep -->
+        <g class="scanline" style="transform-origin:200px 200px; animation:spin 6s linear infinite;">
+          <path d="M200,200 L200,10 A190,190 0 0,1 335,75 Z" fill="url(#sweepGrad)"/>
+        </g>
+        <!-- anomaly points -->
+        <g fill="#E8A33D">
+          <circle class="pulse" cx="248" cy="140" r="4" style="animation:pulse 2.4s ease-in-out infinite;"/>
+          <circle class="pulse" cx="150" cy="235" r="4" style="animation:pulse 2.4s ease-in-out infinite 0.6s;"/>
+          <circle class="pulse" cx="270" cy="260" r="3.5" style="animation:pulse 2.4s ease-in-out infinite 1.2s;"/>
+        </g>
+        <g fill="#4FA8A0">
+          <circle cx="200" cy="200" r="3"/>
+        </g>
+        <text x="200" y="225" text-anchor="middle" fill="#55617A" font-family="IBM Plex Mono" font-size="9">37.8°N 32.5°E</text>
+      </svg>
+      <style>
+        @keyframes spin{ to { transform: rotate(360deg); } }
+        @keyframes pulse{
+          0%,100%{ opacity:0.35; r:3; }
+          50%{ opacity:1; r:5; }
+        }
+      </style>
+    </div>
+  </div>
+</section>
+
+<div class="sources">
+  <div class="wrap">
+    <span class="label">VERİ KAYNAKLARI</span>
+    <div class="source-list">
+      <span>Sentinel-2 MSI</span>
+      <span>Sentinel-1 InSAR</span>
+      <span>Planet SkySat</span>
+      <span>Copernicus DEM</span>
+      <span>Google Earth Engine</span>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="hizmetler">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dash"></span>HİZMETLER</div>
+      <h2>Üç alanda, tek analiz altyapısı</h2>
+      <p>Aynı uydu verisi işleme hattını farklı problem alanlarına uyarlıyoruz — arkeolojik keşiften maden aramaya kadar.</p>
+    </div>
+
+    <div class="services">
+      <div class="service-row">
+        <div class="service-tag">01 / ARKEOLOJİ</div>
+        <div>
+          <h3>Arkeolojik Alan Tespiti</h3>
+          <p>Termal, vejetasyon ve morfolojik anomalileri çok bantlı uydu görüntülerinden çıkararak yüzeyde görünmeyen yerleşim ve yapı izlerini önceliklendiriyoruz.</p>
+        </div>
+        <div class="service-detail">
+          <ul>
+            <li>Çok zamanlı (multi-temporal) değişim analizi</li>
+            <li>Toprak işareti / bitki örtüsü işareti tespiti</li>
+            <li>Sub-pixel konum düzeltme ve saha föyü üretimi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-tag">02 / JEOLOJİ</div>
+        <div>
+          <h3>Alterasyon &amp; Maden Damarı Haritalama</h3>
+          <p>Planet görüntüleri üzerinden mineral alterasyon oranlarını ve referans spektral imzaları karşılaştırarak potansiyel maden hedeflerini işaretliyoruz.</p>
+        </div>
+        <div class="service-detail">
+          <ul>
+            <li>Spektral referans imza karşılaştırması</li>
+            <li>Alterasyon oranı haritaları</li>
+            <li>Hedef önceliklendirme raporu</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-tag">03 / SAHA</div>
+        <div>
+          <h3>Saha Doğrulama &amp; Mobil İzleme</h3>
+          <p>AnomaliRadar mobil uygulamasıyla, masaüstünde işaretlenen anomali noktalarını saha ekibi GPS üzerinden doğrudan takip edip doğrular.</p>
+        </div>
+        <div class="service-detail">
+          <ul>
+            <li>Android saha uygulaması</li>
+            <li>Koordinat bazlı görev listesi</li>
+            <li>Doğrulama sonuçlarının merkeze aktarımı</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="surec" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dash"></span>SÜREÇ</div>
+      <h2>Ham veriden sahaya, altı adım</h2>
+      <p>Her proje aynı doğrulanabilir hattan geçer — otomatik tespit hiçbir zaman tek başına karar vermez.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">01</div>
+        <div><h4>Veri Toplama</h4><p>İlgi alanı için Sentinel-2, Sentinel-1, Planet ve Copernicus DEM verileri Google Earth Engine üzerinden derlenir.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">02</div>
+        <div><h4>Ön İşleme &amp; Kalibrasyon</h4><p>Atmosferik düzeltme, geometrik hizalama ve bant kalibrasyonu yapılır; mevsimsel etkiler ayrıştırılır.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">03</div>
+        <div><h4>Anomali Tespiti</h4><p>Termal, vejetasyon, InSAR koherens ve morfolojik modüller paralel çalışır; makine öğrenmesi modeli adayları puanlar.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">04</div>
+        <div><h4>Çapraz Doğrulama</h4><p>Farklı modüllerden gelen sinyaller çakıştırılır (fusion), yanlış pozitifler bilinen alan kataloğuyla filtrelenir.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">05</div>
+        <div><h4>Saha Doğrulama</h4><p>Öncelikli koordinatlar AnomaliRadar üzerinden saha ekibine iletilir, sonuçlar merkeze geri aktarılır.</p></div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">06</div>
+        <div><h4>Rapor &amp; Teslim</h4><p>Bulgular, koordinatlar ve güven skorlarıyla birlikte kurum için okunabilir bir rapor halinde teslim edilir.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="teknoloji">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dash"></span>TEKNOLOJİ</div>
+      <h2>Analiz motorunun altında</h2>
+      <p>20'den fazla özel modülden oluşan bir işlem hattı, tek bir kontrol panelinde birleşiyor.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-cell">
+        <div class="cap-label">TERMAL &amp; VEJETASYON</div>
+        <p>Yüzey sıcaklık anomalileri ve bitki örtüsü stres desenleri üzerinden gömülü yapı izlerinin tespiti.</p>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-label">DEM &amp; MORFOLOJİ</div>
+        <p>Yükseklik verisinden mikro-topografik düzensizliklerin çıkarılması ve zemin önceliklendirmesi.</p>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-label">INSAR KOHERENS</div>
+        <p>Radar koherens kaybından yüzey bozulmalarının ve gizli yapı sınırlarının izlenmesi.</p>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-label">ÇOK ZAMANLI ANALİZ</div>
+        <p>Mevsimsel ve çok yıllı görüntü serileriyle kalıcı anomalilerin geçici etkilerden ayrıştırılması.</p>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-label">MAKİNE ÖĞRENMESİ</div>
+        <p>PCA ve sınıflandırma modelleriyle çok bantlı sinyallerin tek bir güven skoruna indirgenmesi.</p>
+      </div>
+      <div class="cap-cell">
+        <div class="cap-label">SUB-PIXEL KONUMLAMA</div>
+        <p>Tespit edilen anomalilerin saha koordinatlarına metre altı hassasiyetle indirgenmesi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="vaka">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dash"></span>ÖRNEK ÇIKTI</div>
+      <h2>Sistem gerçek veri üzerinde ne üretiyor</h2>
+      <p>Aşağıdaki paneller, test koordinatları üzerinde çalıştırılan analiz motorunun gerçek çıktılarıdır — pazarlama görseli değil, doğrudan işlem hattının kendisidir.</p>
+    </div>
+
+    <div class="case-block">
+      <div class="case-tag">PANEL / 01</div>
+      <div>
+        <h3>Çok Katmanlı Arazi Analizi</h3>
+        <p>Tek koordinat için sekiz farklı türetilmiş katman (hillshade, eğim, local relief, sky-view factor, negatif openness, NDVI, TPI) aynı anda üretilir ve korroborasyon panelinde çakıştırılır. Bu örnekte 7 aday anomali güven seviyesine göre işaretlenmiş, koordinatlarıyla birlikte listelenmiştir.</p>
+        <img class="case-img" src="images/case-01-panel.jpg" alt="Sekiz katmanlı arazi analizi paneli: hillshade, eğim, local relief, sky-view factor, negatif openness, NDVI, TPI ve korroborasyon katmanları">
+        <div class="case-note">DEM+NIR+NDVI · k=1.5 · 7 aday anomali</div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <div class="case-tag">PANEL / 02</div>
+      <div>
+        <h3>Termal Anomali Tespiti</h3>
+        <p>Negatif openness katmanı ile termal sinyal çakıştırılarak, gürültü içinden istatistiksel olarak anlamlı sıcak/soğuk noktalar ayrıştırılır. Yüksek güvenli adaylar kırmızı, ikincil adaylar mavi ile işaretlenir.</p>
+        <img class="case-img" src="images/case-02-anomaly.jpg" alt="Negatif openness ve termal anomali tespiti: gürültü alanında işaretlenmiş beş aday nokta">
+        <div class="case-note">Negatif openness + termal z-skor korelasyonu</div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <div class="case-tag">PANEL / 03</div>
+      <div>
+        <h3>Crop-Mark &amp; Termal Skorlama</h3>
+        <p>DEM türevleri (hillshade, sky-view factor, negatif openness, local relief) ile üretilen crop-mark skorlama modeli, yüzey altındaki dikdörtgen bir yapı sınırını net biçimde ortaya çıkarır. Aynı bölgenin termal z-skoru, bağımsız bir katman olarak bulguyu doğrular.</p>
+        <img class="case-img" src="images/case-03-prospection.jpg" alt="DEM türevleri ve crop-mark skorlama paneli: gömülü dikdörtgen yapı sınırının tespiti ve termal z-skoru doğrulaması">
+        <div class="case-note">Crop-mark skoru + termal z-skor çapraz doğrulama</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow"><span class="dash"></span>KİMLER İÇİN</div>
+      <h2>Kararı veren kurumlar için tasarlandı</h2>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <h4>Müzeler &amp; Kültür Kurumları</h4>
+        <p>Kazı öncesi alan önceliklendirme ve koruma alanı planlaması için ön keşif raporu.</p>
+      </div>
+      <div class="audience-card">
+        <h4>Maden &amp; Enerji Şirketleri</h4>
+        <p>Saha ziyareti öncesi alterasyon haritasıyla arama bütçesinin doğru bölgelere yönlendirilmesi.</p>
+      </div>
+      <div class="audience-card">
+        <h4>Araştırma Kurumları &amp; Üniversiteler</h4>
+        <p>Geniş alan taramalarında saha zamanını en yüksek olasılıklı noktalara odaklama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="iletisim">
+  <div class="wrap">
+    <div class="contact-panel">
+      <div>
+        <div class="eyebrow"><span class="dash"></span>İLETİŞİM</div>
+        <h2>Sahanızı konuşalım</h2>
+        <p class="lead">İlgi alanınızı ve hedefinizi paylaşın, uygun modülle birlikte bir ön değerlendirme dönüşü yapalım.</p>
+        <a href="https://t.me/vestigiasystem" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:20px; display:inline-block;">Telegram'dan Yaz</a>
+        <div class="contact-points">
+          <div class="contact-point"><span class="dot">→</span> Pilot bölge analizi ile başlangıç</div>
+          <div class="contact-point"><span class="dot">→</span> Kurumunuza özel kapsam ve teklif</div>
+          <div class="contact-point"><span class="dot">→</span> Gizlilik sözleşmesi kapsamında değerlendirme</div>
+        </div>
+      </div>
+      <form id="contactForm" novalidate>
+        <div class="field">
+          <label for="name">AD SOYAD</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="org">KURUM</label>
+          <input id="org" name="org" type="text" required>
+        </div>
+        <div class="field">
+          <label for="email">E-POSTA</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="interest">İLGİ ALANI</label>
+          <select id="interest" name="interest">
+            <option>Arkeolojik Alan Tespiti</option>
+            <option>Maden / Alterasyon Haritalama</option>
+            <option>Saha Doğrulama &amp; Mobil İzleme</option>
+            <option>Diğer</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="msg">MESAJ</label>
+          <textarea id="msg" name="message" placeholder="İlgi alanınız ve saha koordinatları hakkında kısa bilgi..."></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" id="submitBtn">Talebi Gönder</button>
+        <p id="formStatus" style="font-size:0.88rem; margin-top:4px; display:none;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="font-size:1.05rem;"><span class="mark"></span>Vestigia</div>
+    <span class="fine">© 2026 Vestigia. Tüm hakları saklıdır.</span>
+  </div>
+</footer>
+
+<script>
+  // === FORM AYARI ===
+  // Formspree.io adresinden ücretsiz kayıt olup kendi form ID'ni aşağıya yapıştır.
+  // Örnek: "https://formspree.io/f/abcdwxyz"
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/maeyvqkz";
+
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+      status.style.display = 'block';
+      status.style.color = '#E8A33D';
+      status.textContent = 'Form henüz bir Formspree hesabına bağlanmadı. FORMSPREE_ENDPOINT değerini güncelleyin.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Gönderiliyor...';
+    status.style.display = 'none';
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (res.ok) {
+        form.reset();
+        status.style.display = 'block';
+        status.style.color = '#4FA8A0';
+        status.textContent = 'Talebiniz iletildi, teşekkür ederiz. En kısa sürede dönüş yapacağız.';
+      } else {
+        throw new Error('Gönderim başarısız');
+      }
+    } catch (err) {
+      status.style.display = 'block';
+      status.style.color = '#E05252';
+      status.textContent = 'Bir sorun oluştu, lütfen tekrar deneyin veya doğrudan e-posta gönderin.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Talebi Gönder';
+    }
+  });
+</script>
+</body>
+</html>
