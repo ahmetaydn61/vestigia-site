@@ -4,6 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vestigia — Uzaktan Algılama ile Anomali Tespiti</title>
+<meta name="description" content="Uydu görüntüsü, DEM ve makine öğrenmesiyle arkeolojik yerleşim izlerini ve jeolojik alterasyon alanlarını saha çalışmasından önce haritalıyoruz. Müzeler, maden şirketleri ve araştırma kurumları için.">
+<meta name="theme-color" content="#0B1120">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ahmetaydn61.github.io/vestigia-site/">
+<meta property="og:title" content="Vestigia — Uzaktan Algılama ile Anomali Tespiti">
+<meta property="og:description" content="Yeraltındaki izleri, kazmadan önce görün. Uydu görüntüsü, DEM ve makine öğrenmesiyle arkeolojik ve jeolojik anomali tespiti.">
+<meta property="og:image" content="https://ahmetaydn61.github.io/vestigia-site/og-image.png">
+<meta property="og:locale" content="tr_TR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vestigia — Uzaktan Algılama ile Anomali Tespiti">
+<meta name="twitter:description" content="Yeraltındaki izleri, kazmadan önce görün.">
+<meta name="twitter:image" content="https://ahmetaydn61.github.io/vestigia-site/og-image.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -262,6 +282,52 @@
   }
   .cap-cell p{font-size:0.92rem; color:var(--text-dim);}
 
+  /* ---------- LEGAL ---------- */
+  .legal-block{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+  }
+  .legal-block:last-child{border-bottom:1px solid var(--line);}
+  .legal-block summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-family:var(--font-head);
+    font-size:1.05rem;
+    font-weight:600;
+    color:#fff;
+  }
+  .legal-block summary::-webkit-details-marker{display:none;}
+  .legal-block summary::after{
+    content:"+";
+    font-family:var(--font-mono);
+    color:var(--teal);
+    font-size:1.3rem;
+    margin-left:16px;
+  }
+  .legal-block[open] summary::after{content:"–";}
+  .legal-block .legal-body{
+    margin-top:18px;
+    color:var(--text-dim);
+    font-size:0.92rem;
+    max-width:72ch;
+  }
+  .legal-body p{margin-bottom:12px;}
+  .legal-body strong{color:var(--text);}
+  .legal-body ul{margin:8px 0 12px 20px;}
+  .legal-body li{margin-bottom:6px;}
+  .checkbox-field{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:0.85rem;
+    color:var(--text-dim);
+  }
+  .checkbox-field input{width:auto; margin-top:3px; accent-color:var(--teal);}
+  .checkbox-field a{color:var(--teal); text-decoration:underline;}
+
   /* ---------- CASE STUDY ---------- */
   .case-block{
     display:grid;
@@ -362,6 +428,17 @@
   }
   footer .fine{font-size:0.85rem; color:var(--text-faint);}
 
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 860px){
     .hero .wrap{grid-template-columns:1fr;}
@@ -379,6 +456,7 @@
   /* reduced motion */
   @media (prefers-reduced-motion: reduce){
     .scanline, .pulse{animation:none !important;}
+    .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
   }
 </style>
 </head>
@@ -444,7 +522,8 @@
         <g fill="#4FA8A0">
           <circle cx="200" cy="200" r="3"/>
         </g>
-        <text x="200" y="225" text-anchor="middle" fill="#55617A" font-family="IBM Plex Mono" font-size="9">37.8°N 32.5°E</text>
+        <text x="200" y="216" text-anchor="middle" fill="#55617A" font-family="IBM Plex Mono" font-size="7.5" letter-spacing="1">ÖRNEK KOORDİNAT</text>
+        <text x="200" y="230" text-anchor="middle" fill="#55617A" font-family="IBM Plex Mono" font-size="9">39.925018, 32.866287</text>
       </svg>
       <style>
         @keyframes spin{ to { transform: rotate(360deg); } }
@@ -472,14 +551,14 @@
 
 <section class="section" id="hizmetler">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="dash"></span>HİZMETLER</div>
       <h2>Üç alanda, tek analiz altyapısı</h2>
       <p>Aynı uydu verisi işleme hattını farklı problem alanlarına uyarlıyoruz — arkeolojik keşiften maden aramaya kadar.</p>
     </div>
 
     <div class="services">
-      <div class="service-row">
+      <div class="service-row reveal">
         <div class="service-tag">01 / ARKEOLOJİ</div>
         <div>
           <h3>Arkeolojik Alan Tespiti</h3>
@@ -494,7 +573,7 @@
         </div>
       </div>
 
-      <div class="service-row">
+      <div class="service-row reveal">
         <div class="service-tag">02 / JEOLOJİ</div>
         <div>
           <h3>Alterasyon &amp; Maden Damarı Haritalama</h3>
@@ -509,7 +588,7 @@
         </div>
       </div>
 
-      <div class="service-row">
+      <div class="service-row reveal">
         <div class="service-tag">03 / SAHA</div>
         <div>
           <h3>Saha Doğrulama &amp; Mobil İzleme</h3>
@@ -529,33 +608,33 @@
 
 <section class="section" id="surec" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="dash"></span>SÜREÇ</div>
       <h2>Ham veriden sahaya, altı adım</h2>
       <p>Her proje aynı doğrulanabilir hattan geçer — otomatik tespit hiçbir zaman tek başına karar vermez.</p>
     </div>
     <div class="process-list">
-      <div class="process-item">
+      <div class="process-item reveal">
         <div class="process-num">01</div>
         <div><h4>Veri Toplama</h4><p>İlgi alanı için Sentinel-2, Sentinel-1, Planet ve Copernicus DEM verileri Google Earth Engine üzerinden derlenir.</p></div>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <div class="process-num">02</div>
         <div><h4>Ön İşleme &amp; Kalibrasyon</h4><p>Atmosferik düzeltme, geometrik hizalama ve bant kalibrasyonu yapılır; mevsimsel etkiler ayrıştırılır.</p></div>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <div class="process-num">03</div>
         <div><h4>Anomali Tespiti</h4><p>Termal, vejetasyon, InSAR koherens ve morfolojik modüller paralel çalışır; makine öğrenmesi modeli adayları puanlar.</p></div>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <div class="process-num">04</div>
         <div><h4>Çapraz Doğrulama</h4><p>Farklı modüllerden gelen sinyaller çakıştırılır (fusion), yanlış pozitifler bilinen alan kataloğuyla filtrelenir.</p></div>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <div class="process-num">05</div>
         <div><h4>Saha Doğrulama</h4><p>Öncelikli koordinatlar AnomaliRadar üzerinden saha ekibine iletilir, sonuçlar merkeze geri aktarılır.</p></div>
       </div>
-      <div class="process-item">
+      <div class="process-item reveal">
         <div class="process-num">06</div>
         <div><h4>Rapor &amp; Teslim</h4><p>Bulgular, koordinatlar ve güven skorlarıyla birlikte kurum için okunabilir bir rapor halinde teslim edilir.</p></div>
       </div>
@@ -565,33 +644,33 @@
 
 <section class="section" id="teknoloji">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="dash"></span>TEKNOLOJİ</div>
       <h2>Analiz motorunun altında</h2>
       <p>20'den fazla özel modülden oluşan bir işlem hattı, tek bir kontrol panelinde birleşiyor.</p>
     </div>
     <div class="cap-grid">
-      <div class="cap-cell">
+      <div class="cap-cell reveal">
         <div class="cap-label">TERMAL &amp; VEJETASYON</div>
         <p>Yüzey sıcaklık anomalileri ve bitki örtüsü stres desenleri üzerinden gömülü yapı izlerinin tespiti.</p>
       </div>
-      <div class="cap-cell">
+      <div class="cap-cell reveal">
         <div class="cap-label">DEM &amp; MORFOLOJİ</div>
         <p>Yükseklik verisinden mikro-topografik düzensizliklerin çıkarılması ve zemin önceliklendirmesi.</p>
       </div>
-      <div class="cap-cell">
+      <div class="cap-cell reveal">
         <div class="cap-label">INSAR KOHERENS</div>
         <p>Radar koherens kaybından yüzey bozulmalarının ve gizli yapı sınırlarının izlenmesi.</p>
       </div>
-      <div class="cap-cell">
+      <div class="cap-cell reveal">
         <div class="cap-label">ÇOK ZAMANLI ANALİZ</div>
         <p>Mevsimsel ve çok yıllı görüntü serileriyle kalıcı anomalilerin geçici etkilerden ayrıştırılması.</p>
       </div>
-      <div class="cap-cell">
+      <div class="cap-cell reveal">
         <div class="cap-label">MAKİNE ÖĞRENMESİ</div>
         <p>PCA ve sınıflandırma modelleriyle çok bantlı sinyallerin tek bir güven skoruna indirgenmesi.</p>
       </div>
-      <div class="cap-cell">
+      <div class="cap-cell reveal">
         <div class="cap-label">SUB-PIXEL KONUMLAMA</div>
         <p>Tespit edilen anomalilerin saha koordinatlarına metre altı hassasiyetle indirgenmesi.</p>
       </div>
@@ -601,13 +680,13 @@
 
 <section class="section" id="vaka">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="dash"></span>ÖRNEK ÇIKTI</div>
       <h2>Sistem gerçek veri üzerinde ne üretiyor</h2>
       <p>Aşağıdaki paneller, test koordinatları üzerinde çalıştırılan analiz motorunun gerçek çıktılarıdır — pazarlama görseli değil, doğrudan işlem hattının kendisidir.</p>
     </div>
 
-    <div class="case-block">
+    <div class="case-block reveal">
       <div class="case-tag">PANEL / 01</div>
       <div>
         <h3>Çok Katmanlı Arazi Analizi</h3>
@@ -617,7 +696,7 @@
       </div>
     </div>
 
-    <div class="case-block">
+    <div class="case-block reveal">
       <div class="case-tag">PANEL / 02</div>
       <div>
         <h3>Termal Anomali Tespiti</h3>
@@ -627,7 +706,7 @@
       </div>
     </div>
 
-    <div class="case-block">
+    <div class="case-block reveal">
       <div class="case-tag">PANEL / 03</div>
       <div>
         <h3>Crop-Mark &amp; Termal Skorlama</h3>
@@ -641,20 +720,20 @@
 
 <section class="section" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="eyebrow"><span class="dash"></span>KİMLER İÇİN</div>
       <h2>Kararı veren kurumlar için tasarlandı</h2>
     </div>
     <div class="audience-grid">
-      <div class="audience-card">
+      <div class="audience-card reveal">
         <h4>Müzeler &amp; Kültür Kurumları</h4>
         <p>Kazı öncesi alan önceliklendirme ve koruma alanı planlaması için ön keşif raporu.</p>
       </div>
-      <div class="audience-card">
+      <div class="audience-card reveal">
         <h4>Maden &amp; Enerji Şirketleri</h4>
         <p>Saha ziyareti öncesi alterasyon haritasıyla arama bütçesinin doğru bölgelere yönlendirilmesi.</p>
       </div>
-      <div class="audience-card">
+      <div class="audience-card reveal">
         <h4>Araştırma Kurumları &amp; Üniversiteler</h4>
         <p>Geniş alan taramalarında saha zamanını en yüksek olasılıklı noktalara odaklama.</p>
       </div>
@@ -664,7 +743,7 @@
 
 <section class="section" id="iletisim">
   <div class="wrap">
-    <div class="contact-panel">
+    <div class="contact-panel reveal">
       <div>
         <div class="eyebrow"><span class="dash"></span>İLETİŞİM</div>
         <h2>Sahanızı konuşalım</h2>
@@ -702,10 +781,46 @@
           <label for="msg">MESAJ</label>
           <textarea id="msg" name="message" placeholder="İlgi alanınız ve saha koordinatları hakkında kısa bilgi..."></textarea>
         </div>
+        <div class="checkbox-field">
+          <input type="checkbox" id="kvkkConsent" required>
+          <label for="kvkkConsent" style="font-family:var(--font-body); text-transform:none; letter-spacing:normal;"><a href="#kvkk">KVKK Aydınlatma Metni'ni</a> okudum, kişisel verilerimin belirtilen amaçla işlenmesini kabul ediyorum.</label>
+        </div>
         <button class="btn btn-primary" type="submit" id="submitBtn">Talebi Gönder</button>
         <p id="formStatus" style="font-size:0.88rem; margin-top:4px; display:none;"></p>
       </form>
     </div>
+  </div>
+</section>
+
+<section class="section" id="kvkk" style="padding-top:60px; padding-bottom:60px;">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:24px;">
+      <div class="eyebrow"><span class="dash"></span>YASAL</div>
+      <h2 style="font-size:1.6rem;">Gizlilik ve Yasal Çerçeve</h2>
+    </div>
+
+    <details class="legal-block">
+      <summary>KVKK Aydınlatma Metni</summary>
+      <div class="legal-body">
+        <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, veri sorumlusu sıfatıyla Vestigia, iletişim formu aracılığıyla paylaştığınız <strong>ad soyad, kurum, e-posta adresi ve mesaj içeriğinden</strong> oluşan kişisel verilerinizi aşağıdaki amaçlarla işler:</p>
+        <ul>
+          <li>Talebinizi değerlendirmek ve tarafınıza dönüş yapmak</li>
+          <li>Kurumunuza özel bir teklif veya kapsam belgesi hazırlamak</li>
+          <li>Yasal yükümlülüklerin yerine getirilmesi ve talep geçmişinin kayıt altına alınması</li>
+        </ul>
+        <p>Verileriniz, açık rızanıza dayanılarak işlenmekte olup üçüncü taraflarla, yasal zorunluluklar dışında paylaşılmaz. Verileriniz, talebinizin sonuçlanmasından itibaren makul bir süre boyunca saklanır ve sonrasında silinir veya anonim hale getirilir.</p>
+        <p>KVKK'nın 11. maddesi kapsamında; verilerinizin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını öğrenme, yurt içinde/dışında aktarıldığı üçüncü kişileri bilme, eksik/yanlış işlenmişse düzeltilmesini isteme, silinmesini/yok edilmesini isteme ve itiraz etme haklarına sahipsiniz. Bu haklarınızı kullanmak için iletişim bölümündeki Telegram hattı veya form üzerinden bize ulaşabilirsiniz.</p>
+      </div>
+    </details>
+
+    <details class="legal-block">
+      <summary>Yasal Uyarı — İzinsiz Kazı ve Arama</summary>
+      <div class="legal-body">
+        <p>2863 sayılı Kültür ve Tabiat Varlıklarını Koruma Kanunu'nun <strong>35. maddesi</strong> uyarınca, kültür varlıklarını ortaya çıkarmaya yönelik araştırma, sondaj ve kazı yapma hakkı yalnızca Kültür ve Turizm Bakanlığı'na aittir; bu iznin bilimsel ve mali yeterliliği kabul edilmiş kurum ve heyetlere verilmesi Cumhurbaşkanı kararına bağlıdır.</p>
+        <p>Aynı Kanunun <strong>74. maddesi</strong>, kültür varlığı bulmak amacıyla izinsiz kazı veya sondaj yapılmasını 2 ila 5 yıl hapis cezasıyla; izinsiz arama fiilini ise ayrı bir ceza ile düzenlemektedir. Bu suç şikayete tabi değildir.</p>
+        <p>Vestigia'nın ürettiği analiz çıktıları, <strong>yalnızca ön değerlendirme ve önceliklendirme amaçlıdır</strong> — hiçbir bulgu, ilgili Kültür Varlıklarını Koruma Bölge Kurulu, Müze Müdürlüğü veya Kültür ve Turizm Bakanlığı'ndan usulüne uygun izin alınmadan sahada fiziksel müdahaleye (kazı, sondaj, arama) konu edilemez. Hizmetlerimiz yalnızca bu izinlere sahip veya izin sürecini yürüten kurumsal müşterilere yöneliktir. Saha çalışması sırasında kaçak kazıya dair bir bulguya rastlanması halinde, durumun ilgili Müze Müdürlüğü'ne veya kolluk kuvvetlerine bildirilmesi yasal bir zorunluluktur.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -715,6 +830,24 @@
     <span class="fine">© 2026 Vestigia. Tüm hakları saklıdır.</span>
   </div>
 </footer>
+
+<script>
+  // Scroll-reveal animation
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  }
+</script>
 
 <script>
   // === FORM AYARI ===
