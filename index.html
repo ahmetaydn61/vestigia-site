@@ -476,6 +476,56 @@
     margin-top:10px;
   }
 
+  /* ---------- ANALİZ TANITIM ---------- */
+  .an-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; margin-bottom:40px;}
+  .an-grid p{color:var(--text-dim); margin-bottom:16px; max-width:58ch;}
+  .an-grid .btn{margin-top:10px; display:inline-block;}
+  .an-panel{border:1px solid var(--line); background:rgba(16,24,43,0.92); padding:26px 24px;}
+  .an-panel .an-title{font-family:var(--font-mono); font-size:0.75rem; color:var(--teal); margin-bottom:18px;}
+  .an-years{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px;}
+  .an-label{font-size:0.82rem; color:var(--text-faint); margin-bottom:6px;}
+  .an-field{border:1px solid var(--line); background:var(--bg); padding:11px 14px; font-family:var(--font-mono); color:#fff; font-size:1rem;}
+  .an-chips{display:flex; flex-wrap:wrap; gap:8px; border:1px solid var(--line); background:var(--bg); padding:12px;}
+  .an-chip{background:rgba(79,168,160,0.18); border:1px solid rgba(79,168,160,0.5); color:#fff; font-size:0.86rem; padding:6px 12px; border-radius:3px;}
+  .an-chip::after{content:" \00d7"; color:var(--text-faint);}
+  .an-cards{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .an-card{border:1px solid var(--line); padding:24px 22px; background:linear-gradient(180deg, var(--bg-panel) 0%, var(--bg) 100%);}
+  .an-card .an-num{font-family:var(--font-mono); font-size:0.75rem; color:var(--amber); margin-bottom:10px;}
+  .an-card h3{font-family:var(--font-head); font-size:1.1rem; font-weight:600; color:#fff; margin-bottom:8px;}
+  .an-card p{font-size:0.9rem; color:var(--text-dim);}
+  .an-note{margin-top:22px; font-size:0.84rem; color:var(--text-faint);}
+
+  /* ---------- PAKET ÖRNEK ÇIKTILARI ---------- */
+  .ex-tabs{display:flex; gap:6px; margin-bottom:30px; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+  .ex-tab{background:none; border:0; border-bottom:2px solid transparent; margin-bottom:-1px; color:var(--text-dim); font-family:var(--font-head); font-size:1rem; font-weight:500; padding:12px 24px; cursor:pointer; transition:color 0.2s;}
+  .ex-tab:hover{color:#fff;}
+  .ex-tab[aria-selected="true"]{color:#fff; border-bottom-color:var(--amber);}
+  .ex-tab:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+  .ex-panel{display:none; grid-template-columns:0.75fr 1.25fr; gap:36px; align-items:start;}
+  .ex-panel.active{display:grid;}
+  .ex-info h3{font-family:var(--font-head); font-size:1.3rem; font-weight:600; color:#fff; margin-bottom:6px;}
+  .ex-info .ex-sub{font-size:0.9rem; color:var(--text-faint); margin-bottom:18px;}
+  .ex-info ul{list-style:none;}
+  .ex-info li{padding-left:16px; position:relative; margin-bottom:9px; font-size:0.95rem; color:var(--text-dim);}
+  .ex-info li::before{content:""; position:absolute; left:0; top:0.6em; width:5px; height:5px; background:var(--teal);}
+  .ex-info li.inc{color:var(--text-faint);}
+  .ex-info li.inc::before{background:var(--amber);}
+  .ex-what{color:var(--text-dim); font-size:0.95rem; margin-bottom:18px;}
+  .ex-label{font-family:var(--font-mono); font-size:0.75rem; color:var(--teal); margin-bottom:10px;}
+  .ex-out{margin-top:16px; font-size:0.92rem; color:var(--text-dim);}
+  .ex-out b{color:#fff; font-weight:600;}
+  .ex-limit{margin-top:14px; padding-top:14px; border-top:1px solid var(--line); font-size:0.84rem; color:var(--text-faint);}
+  .ex-gallery{display:grid; grid-template-columns:1fr; gap:16px;}
+  .ex-na{grid-column:1 / -1; border:1px solid var(--line); background:var(--bg-panel); padding:32px 28px;}
+  .ex-na h4{font-family:var(--font-head); font-size:1.1rem; font-weight:600; color:#fff; margin-bottom:10px;}
+  .ex-na p{color:var(--text-dim); font-size:0.94rem;}
+  .ex-gallery figure{margin:0;}
+  .ex-gallery a{display:block; border:1px solid var(--line); border-radius:2px; overflow:hidden; background:var(--bg-panel);}
+  .ex-gallery a:hover{border-color:var(--amber);}
+  .ex-gallery img{width:100%; display:block;}
+  .ex-gallery figcaption{margin-top:8px; font-family:var(--font-mono); font-size:0.76rem; color:var(--text-faint);}
+  .ex-empty{grid-column:1 / -1; border:1px dashed var(--line); padding:56px 24px; text-align:center; color:var(--text-faint); font-size:0.92rem;}
+
   /* ---------- TEST AREAS ---------- */
   .test-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:20px;}
   .test-item{grid-column:span 2; margin:0;}
@@ -611,6 +661,10 @@
     .cap-grid{grid-template-columns:1fr;}
     .audience-grid{grid-template-columns:1fr;}
     .calc-grid{grid-template-columns:1fr;}
+    .ex-panel.active{grid-template-columns:1fr; gap:24px;}
+    .ex-tab{padding:10px 16px;}
+    .an-grid{grid-template-columns:1fr; gap:28px;}
+    .an-cards{grid-template-columns:1fr 1fr;}
     .test-grid{grid-template-columns:repeat(2,1fr); gap:14px;}
     .test-item, .test-item:nth-child(n+4){grid-column:span 1;}
     .test-item:last-child{grid-column:span 2;}
@@ -849,6 +903,59 @@
   </div>
 </section>
 
+<section class="section" id="analiz">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>ÇOK ZAMANLI ANALİZ</div>
+      <h2>Yıl aralığını ve branşı siz seçin</h2>
+    </div>
+    <div class="an-grid">
+      <div class="reveal">
+        <p>Analiz tek bir görüntüyle sınırlı kalmaz. Başlangıç ve bitiş yılını belirlersiniz, çalışma bu yıl aralığı için yürütülür; böylece zaman içindeki değişim de değerlendirmeye girer.</p>
+        <p>Aynı çalışmada ihtiyacınız olan branşları birlikte seçebilirsiniz: heyelan ve zemin, tarım izleme, maden aramacılığı ve arkeoloji.</p>
+        <a href="#fiyatlandirma" class="btn btn-outline">Fiyatları Gör</a>
+      </div>
+      <div class="an-panel reveal" aria-hidden="true">
+        <div class="an-title">ANALİZ PARAMETRELERİ / ÖRNEK</div>
+        <div class="an-years">
+          <div><div class="an-label">Başlangıç yılı</div><div class="an-field">2020</div></div>
+          <div><div class="an-label">Bitiş yılı</div><div class="an-field">2026</div></div>
+        </div>
+        <div class="an-label">Branşlar</div>
+        <div class="an-chips">
+          <span class="an-chip">Heyelan ve zemin</span>
+          <span class="an-chip">Tarım izleme</span>
+          <span class="an-chip">Maden aramacılığı</span>
+          <span class="an-chip">Arkeoloji</span>
+        </div>
+      </div>
+    </div>
+    <div class="an-cards">
+      <div class="an-card reveal">
+        <div class="an-num">01</div>
+        <h3>Heyelan ve zemin</h3>
+        <p>Eğim, yüzey değişimi ve zemin davranışı açısından riskli görünen alanların belirlenmesi.</p>
+      </div>
+      <div class="an-card reveal">
+        <div class="an-num">02</div>
+        <h3>Tarım izleme</h3>
+        <p>Yıllar içindeki bitki örtüsü değişimini izleyerek tarıma elverişli alanların değerlendirilmesi.</p>
+      </div>
+      <div class="an-card reveal">
+        <div class="an-num">03</div>
+        <h3>Maden aramacılığı</h3>
+        <p>Alterasyon ve yüzey izlerinden maden potansiyeli taşıyan sahaların ön tespiti.</p>
+      </div>
+      <div class="an-card reveal">
+        <div class="an-num">04</div>
+        <h3>Arkeoloji</h3>
+        <p>Gömülü yapı ve yerleşim izlerinin saha çalışmasından önce haritalanması.</p>
+      </div>
+    </div>
+    <p class="an-note reveal">Çıktılar ön değerlendirme niteliğindedir; saha doğrulaması ve gerekli izinler ayrıca yapılmalıdır.</p>
+  </div>
+</section>
+
 <section class="section" id="vaka">
   <div class="wrap">
     <div class="section-head reveal">
@@ -919,6 +1026,98 @@
       </figure>
     </div>
     <p class="test-note reveal">Görseller çıktı biçimini göstermek içindir; bulgu, kazı veya arama izni yerine geçmez. Saha doğrulaması ayrıca yapılmalıdır.</p>
+  </div>
+</section>
+
+<section class="section" id="paketler">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>ANALİZLER</div>
+      <h2>Analizler nedir?</h2>
+      <p>Heyelan, tarım, maden ve arkeoloji analizlerinin neye baktığını ve ne ürettiğini, gerçek bir test alanından alınmış çıktılarla inceleyin.</p>
+    </div>
+    <div class="ex-tabs" role="tablist" aria-label="Analizler">
+      <button class="ex-tab" role="tab" id="tab-heyelan" aria-selected="true" aria-controls="panel-heyelan">Heyelan</button>
+      <button class="ex-tab" role="tab" id="tab-tarim" aria-selected="false" aria-controls="panel-tarim" tabindex="-1">Tarım</button>
+      <button class="ex-tab" role="tab" id="tab-maden" aria-selected="false" aria-controls="panel-maden" tabindex="-1">Maden</button>
+      <button class="ex-tab" role="tab" id="tab-arkeoloji" aria-selected="false" aria-controls="panel-arkeoloji" tabindex="-1">Arkeoloji</button>
+    </div>
+    <div class="ex-panel active" id="panel-heyelan" role="tabpanel" aria-labelledby="tab-heyelan">
+      <div class="ex-info">
+        <h3>Heyelan ve zemin analizi</h3>
+        <p class="ex-what">Eğim, radar kararsızlığı, nem ve bitki örtüsü kaybından ön risk haritası çıkarılır. Yamaçlar skorlanır ve riskli görünen bölgeler harita üzerinde numaralandırılır.</p>
+        <div class="ex-label">SKORU OLUŞTURAN KATMANLAR</div>
+        <ul>
+          <li>Eğim</li>
+          <li>Radar kararsızlığı</li>
+          <li>Radar yüzey değişimi</li>
+          <li>Bitki örtüsü kaybı</li>
+          <li>Yağışlı dönem nemi</li>
+        </ul>
+        <p class="ex-out"><b>Çıktı:</b> Heyelan risk skoru haritası; düşük, orta ve yüksek sınıfların alan oranları; en önemli bölgeler</p>
+        <p class="ex-limit">Ön değerlendirmedir. Gerçek deformasyon (mm) ölçülmez; kesin sonuç için SLC tabanlı InSAR, jeoteknik etüt ve saha gözlemi gerekir.</p>
+      </div>
+      <div class="ex-gallery">
+        <figure><a href="vip-heyelan.jpg" target="_blank" rel="noopener"><img src="vip-heyelan.jpg" alt="Heyelan risk skoru haritası: uydu görüntüsü üzerinde kırmızı tonlarla risk skoru, numaralı bölgeler ve düşük, orta, yüksek sınıf oranları" loading="lazy"></a><figcaption>Heyelan risk skoru · test alanı, 2020–2026</figcaption></figure>
+      </div>
+    </div>
+    <div class="ex-panel" id="panel-tarim" role="tabpanel" aria-labelledby="tab-tarim">
+      <div class="ex-info">
+        <h3>Tarım analizi</h3>
+        <p class="ex-what">Her pikselin bu yılki durumu, kendi geçmiş yıllarıyla karşılaştırılarak bitki stres haritası üretilir. Böylece orman, çayır ve tarla birbirine karıştırılmaz.</p>
+        <div class="ex-label">SKORU OLUŞTURAN KATMANLAR</div>
+        <ul>
+          <li>NDVI anomalisi (kendi geçmişine göre)</li>
+          <li>Yaprak nemi anomalisi</li>
+          <li>Yıllar arası NDVI değişimi</li>
+        </ul>
+        <p class="ex-out"><b>Çıktı:</b> Bitki stres skoru haritası; sınıf oranları; en önemli bölgeler. Yaprak nemi, yüzey sıcaklığı ve radar bitki indeksi bilgi katmanı olarak sunulur.</p>
+        <p class="ex-limit">Uydu verisi bitkinin durumunu gösterir, nedenini göstermez. Sulama, gübre veya ilaç kararları saha kontrolüyle verilmelidir.</p>
+      </div>
+      <div class="ex-gallery">
+        <figure><a href="vip-tarim.jpg" target="_blank" rel="noopener"><img src="vip-tarim.jpg" alt="Bitki stres skoru haritası: uydu görüntüsü üzerinde yeşil tonlarla stres skoru, numaralı bölgeler ve düşük, orta, yüksek sınıf oranları" loading="lazy"></a><figcaption>Bitki stres skoru · test alanı, 2020–2026</figcaption></figure>
+      </div>
+    </div>
+    <div class="ex-panel" id="panel-maden" role="tabpanel" aria-labelledby="tab-maden">
+      <div class="ex-info">
+        <h3>Maden analizi</h3>
+        <p class="ex-what">Çıplak yüzeydeki mineral alterasyonundan jeolojik ilgi haritası çıkarılır. Maden potansiyeli olabilecek sahalar ön etüt düzeyinde işaretlenir.</p>
+        <div class="ex-label">SKORU OLUŞTURAN KATMANLAR</div>
+        <ul>
+          <li>Kil ve hidroksil (alterasyon)</li>
+          <li>Demir oksit</li>
+          <li>Gossan indeksi</li>
+          <li>Demirli mineraller</li>
+          <li>Kuvars (silika)</li>
+        </ul>
+        <p class="ex-out"><b>Çıktı:</b> Alterasyon skoru haritası; en önemli bölgeler</p>
+        <p class="ex-limit">Yalnızca bitkisiz yüzeyin mineralojisini gösterir; yer altındaki cevheri göstermez. Çalışmalar ruhsat sahibi adına ve jeolog denetiminde yapılmalıdır.</p>
+      </div>
+      <div class="ex-gallery">
+        <div class="ex-na">
+          <h4>Bu test alanında uygulanamadı</h4>
+          <p>Tarama alanında en az 0,5 hektarlık bitişik çıplak kaya veya toprak yüzeyi yok; yüzey bitki örtüsü ya da yapılarla kaplı. Maden ön etüdü, kayalık ve bitki örtüsü seyrek bölgelerde (ör. Gümüşhane, Bayburt) anlamlı sonuç verir.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ex-panel" id="panel-arkeoloji" role="tabpanel" aria-labelledby="tab-arkeoloji">
+      <div class="ex-info">
+        <h3>Arkeoloji analizi</h3>
+        <p class="ex-what">Düzenli geometri, kurak mevsim bitki izi ve doku anomalilerinden araştırma adayları belirlenir. Adaylar bilinen site veritabanıyla karşılaştırılır.</p>
+        <div class="ex-label">SKORU OLUŞTURAN KATMANLAR</div>
+        <ul>
+          <li>Antropojenik iz skoru</li>
+          <li>Kurak mevsim yapı izi</li>
+          <li>Morfolojik yoğunluk</li>
+        </ul>
+        <p class="ex-out"><b>Çıktı:</b> Yapısal iz skoru haritası. Aday koordinatlar yalnızca kurum iş birliği kapsamında paylaşılır.</p>
+        <p class="ex-limit">Akademik çalışma içindir. Adaylar kazı yeri değildir; izinsiz kazı 2863 sayılı Kanun’a göre suçtur. Yeni bir alan tespitinde müze müdürlüğüne bildirim yapılır.</p>
+      </div>
+      <div class="ex-gallery">
+        <figure><a href="vip-arkeoloji.jpg" target="_blank" rel="noopener"><img src="vip-arkeoloji.jpg" alt="Yapısal iz skoru haritası: uydu görüntüsü üzerinde mavi tonlarla yapısal iz skoru ve düşük, orta, yüksek sınıf oranları" loading="lazy"></a><figcaption>Yapısal iz skoru · test alanı, 2020–2026</figcaption></figure>
+      </div>
+    </div>
+    <p class="test-note">Heyelan, tarım ve maden analizleri VIP Tarama paketine dahildir; arkeoloji analizi akademik ve kurumsal iş birliği kapsamında yürütülür. Çıktılar ön değerlendirme niteliğindedir ve saha çalışmasının yerini tutmaz. Veri kaynakları: Copernicus Sentinel-1/2, Copernicus DEM GLO-30, Landsat 8/9, ASTER GED, CHIRPS, ESA WorldCover. Fiyat için <a href="#fiyatlandirma" style="color:var(--teal);">Fiyatlandırma</a> bölümüne bakınız.</p>
   </div>
 </section>
 
@@ -1178,6 +1377,29 @@
   } else {
     revealEls.forEach(el => el.classList.add('in-view'));
   }
+</script>
+
+<script>
+  // === PAKET SEKMELERİ ===
+  (function(){
+    const tabs = Array.from(document.querySelectorAll('.ex-tab'));
+    function sec(tab){
+      tabs.forEach(t => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).classList.toggle('active', on);
+      });
+    }
+    tabs.forEach((t,i) => {
+      t.addEventListener('click', () => sec(t));
+      t.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        sec(n); n.focus();
+      });
+    });
+  })();
 </script>
 
 <script>
