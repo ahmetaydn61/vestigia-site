@@ -166,7 +166,8 @@
   }
   .logo .logo-img{height:38px; width:auto; display:block; filter:drop-shadow(0 0 10px rgba(232,163,61,0.25));}
   .footer-logo{height:84px; width:auto; display:block; opacity:0.95;}
-  .navlinks{display:flex; gap:36px; align-items:center;}
+  .navlinks{display:flex; gap:26px; align-items:center;}
+  section[id]{scroll-margin-top:84px;}
   .navlinks a{
     font-size:0.95rem; color:var(--text-dim);
     transition:color 0.2s;
@@ -691,11 +692,12 @@
     <a href="#" class="logo" aria-label="Vestigia ana sayfa"><img class="logo-img" src="logo-mark.png" alt="Vestigia logosu" width="46" height="38">Vestigia</a>
     <nav class="navlinks">
       <a href="#hizmetler">Hizmetler</a>
+      <a href="#paketler">Analizler</a>
       <a href="#surec">Süreç</a>
       <a href="#teknoloji">Teknoloji</a>
       <a href="#vaka">Örnek Çıktı</a>
-      <a href="#fiyatlandirma">Fiyatlandırma</a>
       <a href="#sss">SSS</a>
+      <a href="#fiyatlandirma">Fiyatlandırma</a>
       <a href="#iletisim">İletişim</a>
     </nav>
     <a href="#iletisim" class="btn btn-primary">Teklif Al</a>
@@ -831,78 +833,6 @@
   </div>
 </section>
 
-<section class="section" id="surec" style="background:rgba(16,24,43,0.78); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow"><span class="dash"></span>SÜREÇ</div>
-      <h2>Ham veriden sahaya, altı adım</h2>
-      <p>Her proje aynı doğrulanabilir hattan geçer — otomatik tespit hiçbir zaman tek başına karar vermez.</p>
-    </div>
-    <div class="process-list">
-      <div class="process-item reveal">
-        <div class="process-num">01</div>
-        <div><h4>Veri Toplama</h4><p>İlgi alanı için Sentinel-2, Sentinel-1, Planet ve Copernicus DEM verileri Google Earth Engine üzerinden derlenir.</p></div>
-      </div>
-      <div class="process-item reveal">
-        <div class="process-num">02</div>
-        <div><h4>Ön İşleme &amp; Kalibrasyon</h4><p>Atmosferik düzeltme, geometrik hizalama ve bant kalibrasyonu yapılır; mevsimsel etkiler ayrıştırılır.</p></div>
-      </div>
-      <div class="process-item reveal">
-        <div class="process-num">03</div>
-        <div><h4>Anomali Tespiti</h4><p>Termal, vejetasyon, InSAR koherens ve morfolojik modüller paralel çalışır; makine öğrenmesi modeli adayları puanlar.</p></div>
-      </div>
-      <div class="process-item reveal">
-        <div class="process-num">04</div>
-        <div><h4>Çapraz Doğrulama</h4><p>Farklı modüllerden gelen sinyaller çakıştırılır (fusion), yanlış pozitifler bilinen alan kataloğuyla filtrelenir.</p></div>
-      </div>
-      <div class="process-item reveal">
-        <div class="process-num">05</div>
-        <div><h4>Saha Doğrulama</h4><p>Öncelikli koordinatlar AnomaliRadar üzerinden saha ekibine iletilir, sonuçlar merkeze geri aktarılır.</p></div>
-      </div>
-      <div class="process-item reveal">
-        <div class="process-num">06</div>
-        <div><h4>Rapor &amp; Teslim</h4><p>Bulgular, koordinatlar ve güven skorlarıyla birlikte kurum için okunabilir bir rapor halinde teslim edilir.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="teknoloji">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow"><span class="dash"></span>TEKNOLOJİ</div>
-      <h2>Analiz motorunun altında</h2>
-      <p>20'den fazla özel modülden oluşan bir işlem hattı, tek bir kontrol panelinde birleşiyor.</p>
-    </div>
-    <div class="cap-grid">
-      <div class="cap-cell reveal">
-        <div class="cap-label">TERMAL &amp; VEJETASYON</div>
-        <p>Yüzey sıcaklık anomalileri ve bitki örtüsü stres desenleri üzerinden gömülü yapı izlerinin tespiti.</p>
-      </div>
-      <div class="cap-cell reveal">
-        <div class="cap-label">DEM &amp; MORFOLOJİ</div>
-        <p>Yükseklik verisinden mikro-topografik düzensizliklerin çıkarılması ve zemin önceliklendirmesi.</p>
-      </div>
-      <div class="cap-cell reveal">
-        <div class="cap-label">INSAR KOHERENS</div>
-        <p>Radar koherens kaybından yüzey bozulmalarının ve gizli yapı sınırlarının izlenmesi.</p>
-      </div>
-      <div class="cap-cell reveal">
-        <div class="cap-label">ÇOK ZAMANLI ANALİZ</div>
-        <p>Mevsimsel ve çok yıllı görüntü serileriyle kalıcı anomalilerin geçici etkilerden ayrıştırılması.</p>
-      </div>
-      <div class="cap-cell reveal">
-        <div class="cap-label">MAKİNE ÖĞRENMESİ</div>
-        <p>PCA ve sınıflandırma modelleriyle çok bantlı sinyallerin tek bir güven skoruna indirgenmesi.</p>
-      </div>
-      <div class="cap-cell reveal">
-        <div class="cap-label">SUB-PIXEL KONUMLAMA</div>
-        <p>Tespit edilen anomalilerin saha koordinatlarına metre altı hassasiyetle indirgenmesi.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="section" id="analiz">
   <div class="wrap">
     <div class="section-head reveal">
@@ -930,102 +860,7 @@
         </div>
       </div>
     </div>
-    <div class="an-cards">
-      <div class="an-card reveal">
-        <div class="an-num">01</div>
-        <h3>Heyelan ve zemin</h3>
-        <p>Eğim, yüzey değişimi ve zemin davranışı açısından riskli görünen alanların belirlenmesi.</p>
-      </div>
-      <div class="an-card reveal">
-        <div class="an-num">02</div>
-        <h3>Tarım izleme</h3>
-        <p>Yıllar içindeki bitki örtüsü değişimini izleyerek tarıma elverişli alanların değerlendirilmesi.</p>
-      </div>
-      <div class="an-card reveal">
-        <div class="an-num">03</div>
-        <h3>Maden aramacılığı</h3>
-        <p>Alterasyon ve yüzey izlerinden maden potansiyeli taşıyan sahaların ön tespiti.</p>
-      </div>
-      <div class="an-card reveal">
-        <div class="an-num">04</div>
-        <h3>Arkeoloji</h3>
-        <p>Gömülü yapı ve yerleşim izlerinin saha çalışmasından önce haritalanması.</p>
-      </div>
-    </div>
     <p class="an-note reveal">Çıktılar ön değerlendirme niteliğindedir; saha doğrulaması ve gerekli izinler ayrıca yapılmalıdır.</p>
-  </div>
-</section>
-
-<section class="section" id="vaka">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow"><span class="dash"></span>ÖRNEK ÇIKTI</div>
-      <h2>Sistem gerçek veri üzerinde ne üretiyor</h2>
-      <p>Aşağıdaki paneller, test koordinatları üzerinde çalıştırılan analiz motorunun gerçek çıktılarıdır — pazarlama görseli değil, doğrudan işlem hattının kendisidir.</p>
-    </div>
-
-    <div class="case-block reveal">
-      <div class="case-tag">PANEL / 01</div>
-      <div>
-        <h3>Çok Katmanlı Arazi Analizi</h3>
-        <p>Tek koordinat için sekiz farklı türetilmiş katman (hillshade, eğim, local relief, sky-view factor, negatif openness, NDVI, TPI) aynı anda üretilir ve korroborasyon panelinde çakıştırılır. Bu örnekte 7 aday anomali güven seviyesine göre işaretlenmiş, koordinatlarıyla birlikte listelenmiştir.</p>
-        <img class="case-img" src="case-01-panel.jpg" alt="Sekiz katmanlı arazi analizi paneli: hillshade, eğim, local relief, sky-view factor, negatif openness, NDVI, TPI ve korroborasyon katmanları">
-        <div class="case-note">DEM+NIR+NDVI · k=1.5 · 7 aday anomali</div>
-      </div>
-    </div>
-
-    <div class="case-block reveal">
-      <div class="case-tag">PANEL / 02</div>
-      <div>
-        <h3>Termal Anomali Tespiti</h3>
-        <p>Negatif openness katmanı ile termal sinyal çakıştırılarak, gürültü içinden istatistiksel olarak anlamlı sıcak/soğuk noktalar ayrıştırılır. Yüksek güvenli adaylar kırmızı, ikincil adaylar mavi ile işaretlenir.</p>
-        <img class="case-img" src="case-02-anomaly.jpg" alt="Negatif openness ve termal anomali tespiti: gürültü alanında işaretlenmiş beş aday nokta">
-        <div class="case-note">Negatif openness + termal z-skor korelasyonu</div>
-      </div>
-    </div>
-
-    <div class="case-block reveal">
-      <div class="case-tag">PANEL / 03</div>
-      <div>
-        <h3>Crop-Mark &amp; Termal Skorlama</h3>
-        <p>DEM türevleri (hillshade, sky-view factor, negatif openness, local relief) ile üretilen crop-mark skorlama modeli, yüzey altındaki dikdörtgen bir yapı sınırını net biçimde ortaya çıkarır. Aynı bölgenin termal z-skoru, bağımsız bir katman olarak bulguyu doğrular.</p>
-        <img class="case-img" src="case-03-prospection.jpg" alt="DEM türevleri ve crop-mark skorlama paneli: gömülü dikdörtgen yapı sınırının tespiti ve termal z-skoru doğrulaması">
-        <div class="case-note">Crop-mark skoru + termal z-skor çapraz doğrulama</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="test-alanlari">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow"><span class="dash"></span>TEST ALANLARI</div>
-      <h2>Test alanlarından çıktılar</h2>
-      <p>Yöntemi denediğimiz test alanlarından analiz haritaları. Görsellere tıklayarak büyütebilirsiniz.</p>
-    </div>
-    <div class="test-grid">
-      <figure class="test-item reveal">
-        <a href="test-alani-1.jpg" target="_blank" rel="noopener"><img src="test-alani-1.jpg" alt="Test alanı 1: renk skalalı analiz haritasında kırmızı ve sarı odaklar" loading="lazy"></a>
-        <figcaption><b>01</b>Test alanı 1</figcaption>
-      </figure>
-      <figure class="test-item reveal">
-        <a href="test-alani-2.jpg" target="_blank" rel="noopener"><img src="test-alani-2.jpg" alt="Test alanı 2: koyu renk skalalı analiz haritasında turuncu ve sarı odaklar" loading="lazy"></a>
-        <figcaption><b>02</b>Test alanı 2</figcaption>
-      </figure>
-      <figure class="test-item reveal">
-        <a href="test-alani-3.jpg" target="_blank" rel="noopener"><img src="test-alani-3.jpg" alt="Test alanı 3: yeşil zemin üzerinde merkezde kırmızı bir odak" loading="lazy"></a>
-        <figcaption><b>03</b>Test alanı 3</figcaption>
-      </figure>
-      <figure class="test-item reveal">
-        <a href="test-alani-4.jpg" target="_blank" rel="noopener"><img src="test-alani-4.jpg" alt="Test alanı 4: sağ üstte kırmızı ve sarı bir odak içeren analiz haritası" loading="lazy"></a>
-        <figcaption><b>04</b>Test alanı 4</figcaption>
-      </figure>
-      <figure class="test-item reveal">
-        <a href="test-alani-5.jpg" target="_blank" rel="noopener"><img src="test-alani-5.jpg" alt="Test alanı 5: merkezdeki kırmızı odak dikdörtgenle, üstteki küçük odak daire ve okla işaretlenmiş" loading="lazy"></a>
-        <figcaption><b>05</b>Test alanı 5</figcaption>
-      </figure>
-    </div>
-    <p class="test-note reveal">Görseller çıktı biçimini göstermek içindir; bulgu, kazı veya arama izni yerine geçmez. Saha doğrulaması ayrıca yapılmalıdır.</p>
   </div>
 </section>
 
@@ -1121,6 +956,213 @@
   </div>
 </section>
 
+<section class="section" id="surec" style="background:rgba(16,24,43,0.78); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>SÜREÇ</div>
+      <h2>Ham veriden sahaya, altı adım</h2>
+      <p>Her proje aynı doğrulanabilir hattan geçer — otomatik tespit hiçbir zaman tek başına karar vermez.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item reveal">
+        <div class="process-num">01</div>
+        <div><h4>Veri Toplama</h4><p>İlgi alanı için Sentinel-2, Sentinel-1, Planet ve Copernicus DEM verileri Google Earth Engine üzerinden derlenir.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">02</div>
+        <div><h4>Ön İşleme &amp; Kalibrasyon</h4><p>Atmosferik düzeltme, geometrik hizalama ve bant kalibrasyonu yapılır; mevsimsel etkiler ayrıştırılır.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">03</div>
+        <div><h4>Anomali Tespiti</h4><p>Termal, vejetasyon, InSAR koherens ve morfolojik modüller paralel çalışır; makine öğrenmesi modeli adayları puanlar.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">04</div>
+        <div><h4>Çapraz Doğrulama</h4><p>Farklı modüllerden gelen sinyaller çakıştırılır (fusion), yanlış pozitifler bilinen alan kataloğuyla filtrelenir.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">05</div>
+        <div><h4>Saha Doğrulama</h4><p>Öncelikli koordinatlar AnomaliRadar üzerinden saha ekibine iletilir, sonuçlar merkeze geri aktarılır.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num">06</div>
+        <div><h4>Rapor &amp; Teslim</h4><p>Bulgular, koordinatlar ve güven skorlarıyla birlikte kurum için okunabilir bir rapor halinde teslim edilir.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="teknoloji">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>TEKNOLOJİ</div>
+      <h2>Analiz motorunun altında</h2>
+      <p>20'den fazla özel modülden oluşan bir işlem hattı, tek bir kontrol panelinde birleşiyor.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-cell reveal">
+        <div class="cap-label">TERMAL &amp; VEJETASYON</div>
+        <p>Yüzey sıcaklık anomalileri ve bitki örtüsü stres desenleri üzerinden gömülü yapı izlerinin tespiti.</p>
+      </div>
+      <div class="cap-cell reveal">
+        <div class="cap-label">DEM &amp; MORFOLOJİ</div>
+        <p>Yükseklik verisinden mikro-topografik düzensizliklerin çıkarılması ve zemin önceliklendirmesi.</p>
+      </div>
+      <div class="cap-cell reveal">
+        <div class="cap-label">INSAR KOHERENS</div>
+        <p>Radar koherens kaybından yüzey bozulmalarının ve gizli yapı sınırlarının izlenmesi.</p>
+      </div>
+      <div class="cap-cell reveal">
+        <div class="cap-label">ÇOK ZAMANLI ANALİZ</div>
+        <p>Mevsimsel ve çok yıllı görüntü serileriyle kalıcı anomalilerin geçici etkilerden ayrıştırılması.</p>
+      </div>
+      <div class="cap-cell reveal">
+        <div class="cap-label">MAKİNE ÖĞRENMESİ</div>
+        <p>PCA ve sınıflandırma modelleriyle çok bantlı sinyallerin tek bir güven skoruna indirgenmesi.</p>
+      </div>
+      <div class="cap-cell reveal">
+        <div class="cap-label">SUB-PIXEL KONUMLAMA</div>
+        <p>Tespit edilen anomalilerin saha koordinatlarına metre altı hassasiyetle indirgenmesi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="vaka">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>ÖRNEK ÇIKTI</div>
+      <h2>Sistem gerçek veri üzerinde ne üretiyor</h2>
+      <p>Aşağıdaki paneller, test koordinatları üzerinde çalıştırılan analiz motorunun gerçek çıktılarıdır — pazarlama görseli değil, doğrudan işlem hattının kendisidir.</p>
+    </div>
+
+    <div class="case-block reveal">
+      <div class="case-tag">PANEL / 01</div>
+      <div>
+        <h3>Çok Katmanlı Arazi Analizi</h3>
+        <p>Tek koordinat için sekiz farklı türetilmiş katman (hillshade, eğim, local relief, sky-view factor, negatif openness, NDVI, TPI) aynı anda üretilir ve korroborasyon panelinde çakıştırılır. Bu örnekte 7 aday anomali güven seviyesine göre işaretlenmiş, koordinatlarıyla birlikte listelenmiştir.</p>
+        <img class="case-img" src="case-01-panel.jpg" alt="Sekiz katmanlı arazi analizi paneli: hillshade, eğim, local relief, sky-view factor, negatif openness, NDVI, TPI ve korroborasyon katmanları">
+        <div class="case-note">DEM+NIR+NDVI · k=1.5 · 7 aday anomali</div>
+      </div>
+    </div>
+
+    <div class="case-block reveal">
+      <div class="case-tag">PANEL / 02</div>
+      <div>
+        <h3>Termal Anomali Tespiti</h3>
+        <p>Negatif openness katmanı ile termal sinyal çakıştırılarak, gürültü içinden istatistiksel olarak anlamlı sıcak/soğuk noktalar ayrıştırılır. Yüksek güvenli adaylar kırmızı, ikincil adaylar mavi ile işaretlenir.</p>
+        <img class="case-img" src="case-02-anomaly.jpg" alt="Negatif openness ve termal anomali tespiti: gürültü alanında işaretlenmiş beş aday nokta">
+        <div class="case-note">Negatif openness + termal z-skor korelasyonu</div>
+      </div>
+    </div>
+
+    <div class="case-block reveal">
+      <div class="case-tag">PANEL / 03</div>
+      <div>
+        <h3>Crop-Mark &amp; Termal Skorlama</h3>
+        <p>DEM türevleri (hillshade, sky-view factor, negatif openness, local relief) ile üretilen crop-mark skorlama modeli, yüzey altındaki dikdörtgen bir yapı sınırını net biçimde ortaya çıkarır. Aynı bölgenin termal z-skoru, bağımsız bir katman olarak bulguyu doğrular.</p>
+        <img class="case-img" src="case-03-prospection.jpg" alt="DEM türevleri ve crop-mark skorlama paneli: gömülü dikdörtgen yapı sınırının tespiti ve termal z-skoru doğrulaması">
+        <div class="case-note">Crop-mark skoru + termal z-skor çapraz doğrulama</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="test-alanlari">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>TEST ALANLARI</div>
+      <h2>Test alanlarından çıktılar</h2>
+      <p>Yöntemi denediğimiz test alanlarından analiz haritaları. Görsellere tıklayarak büyütebilirsiniz.</p>
+    </div>
+    <div class="test-grid">
+      <figure class="test-item reveal">
+        <a href="test-alani-1.jpg" target="_blank" rel="noopener"><img src="test-alani-1.jpg" alt="Test alanı 1: renk skalalı analiz haritasında kırmızı ve sarı odaklar" loading="lazy"></a>
+        <figcaption><b>01</b>Test alanı 1</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-2.jpg" target="_blank" rel="noopener"><img src="test-alani-2.jpg" alt="Test alanı 2: koyu renk skalalı analiz haritasında turuncu ve sarı odaklar" loading="lazy"></a>
+        <figcaption><b>02</b>Test alanı 2</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-3.jpg" target="_blank" rel="noopener"><img src="test-alani-3.jpg" alt="Test alanı 3: yeşil zemin üzerinde merkezde kırmızı bir odak" loading="lazy"></a>
+        <figcaption><b>03</b>Test alanı 3</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-4.jpg" target="_blank" rel="noopener"><img src="test-alani-4.jpg" alt="Test alanı 4: sağ üstte kırmızı ve sarı bir odak içeren analiz haritası" loading="lazy"></a>
+        <figcaption><b>04</b>Test alanı 4</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-5.jpg" target="_blank" rel="noopener"><img src="test-alani-5.jpg" alt="Test alanı 5: merkezdeki kırmızı odak dikdörtgenle, üstteki küçük odak daire ve okla işaretlenmiş" loading="lazy"></a>
+        <figcaption><b>05</b>Test alanı 5</figcaption>
+      </figure>
+    </div>
+    <p class="test-note reveal">Görseller çıktı biçimini göstermek içindir; bulgu, kazı veya arama izni yerine geçmez. Saha doğrulaması ayrıca yapılmalıdır.</p>
+  </div>
+</section>
+
+<section class="section" id="kimler" style="background:rgba(16,24,43,0.78); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>KİMLER İÇİN</div>
+      <h2>Kararı veren kurumlar için tasarlandı</h2>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card reveal">
+        <h4>Müzeler &amp; Kültür Kurumları</h4>
+        <p>Kazı öncesi alan önceliklendirme ve koruma alanı planlaması için ön keşif raporu.</p>
+      </div>
+      <div class="audience-card reveal">
+        <h4>Maden &amp; Enerji Şirketleri</h4>
+        <p>Saha ziyareti öncesi alterasyon haritasıyla arama bütçesinin doğru bölgelere yönlendirilmesi.</p>
+      </div>
+      <div class="audience-card reveal">
+        <h4>Araştırma Kurumları &amp; Üniversiteler</h4>
+        <p>Geniş alan taramalarında saha zamanını en yüksek olasılıklı noktalara odaklama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sss">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>SIKÇA SORULAN SORULAR</div>
+      <h2>Uzaktan algılama ve prospeksiyon hakkında</h2>
+    </div>
+
+    <details class="faq-block">
+      <summary>Uzaktan algılama ile arkeolojik sit tespiti nasıl yapılır?</summary>
+      <div class="faq-body">Çok bantlı uydu görüntüleri (Sentinel-2, Planet), dijital yükseklik modeli (DEM) ve LiDAR/InSAR verileri bir araya getirilir. Termal, vejetasyon ve mikro-topografik anomaliler makine öğrenmesi modelleriyle puanlanarak, yüzeyde görünmeyen yapı ve yerleşim izleri önceliklendirilir. Bu bir ön keşif yöntemidir; nihai doğrulama her zaman sahada yapılır.</div>
+    </details>
+
+    <details class="faq-block">
+      <summary>Jeofizik prospeksiyon ve maden alterasyon haritalaması nedir?</summary>
+      <div class="faq-body">Prospeksiyon, bir bölgede maden potansiyelini uzaktan değerlendirme sürecidir. Planet uydu görüntülerinden elde edilen spektral imzalar, bilinen mineral alterasyon referanslarıyla karşılaştırılarak potansiyel maden hedefleri ve alterasyon oranları haritalanır. Bu, saha arama bütçesinin doğru bölgelere yönlendirilmesini sağlar.</div>
+    </details>
+
+    <details class="faq-block">
+      <summary>Analiz sonuçları resmi bir kazı veya arama izni yerine geçer mi?</summary>
+      <div class="faq-body">Hayır. Vestigia'nın ürettiği çıktılar yalnızca masa başı ön değerlendirme niteliğindedir. Arkeolojik saha müdahalesi için ilgili Kültür Varlıklarını Koruma Bölge Kurulu ve Kültür ve Turizm Bakanlığı'ndan; maden arama faaliyeti için ise MAPEG'den usulüne uygun ruhsat ve izin alınması zorunludur. Detaylar için <a href="#kvkk" style="color:var(--teal);">Yasal Uyarı</a> bölümüne bakabilirsiniz.</div>
+    </details>
+
+    <details class="faq-block">
+      <summary>Hizmetin maliyeti nedir?</summary>
+      <div class="faq-body">Bireysel taramalarda ücret, tarama alanına (dönüm başına 5.000 TL) ve seçilen analiz paketine (Standart, Pro veya VIP) göre hesaplanır; toplamı Fiyatlandırma bölümündeki hesaplayıcıda anında görebilirsiniz. Kurumsal çalışmalar için ihtiyaca özel yazılı teklif sunulur.</div>
+    </details>
+
+    <details class="faq-block">
+      <summary>Hangi kurumlar bu hizmeti kullanabilir?</summary>
+      <div class="faq-body">Müzeler ve kültür varlıkları koruma kurumları, kazı ruhsatına sahip üniversite ve araştırma heyetleri, maden arama ruhsatı bulunan şirketler ile akademik araştırma kurumları. Hizmetlerimiz yalnızca bu izinlere sahip veya izin sürecini yürüten kurumsal müşterilere yöneliktir.</div>
+    </details>
+
+    <details class="faq-block">
+      <summary>Analizlerde hangi veri kaynakları ve yöntemler kullanılıyor?</summary>
+      <div class="faq-body">Sentinel-2 (çok bantlı optik), Sentinel-1 (InSAR koherens), Planet SkySat ve Copernicus DEM verileri Google Earth Engine üzerinden derlenir. Bunlara termal analiz, NDVI/vejetasyon indeksleri, morfolojik (hillshade, sky-view factor, local relief) katmanlar ve makine öğrenmesi tabanlı sınıflandırma (PCA) eklenerek çok katmanlı bir anomali skoru üretilir.</div>
+    </details>
+  </div>
+</section>
+
 <section class="section" id="fiyatlandirma">
   <div class="wrap">
     <div class="section-head reveal">
@@ -1204,68 +1246,6 @@
         <a href="#iletisim" class="btn btn-primary">Teklif Al</a>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="section" style="background:rgba(16,24,43,0.78); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow"><span class="dash"></span>KİMLER İÇİN</div>
-      <h2>Kararı veren kurumlar için tasarlandı</h2>
-    </div>
-    <div class="audience-grid">
-      <div class="audience-card reveal">
-        <h4>Müzeler &amp; Kültür Kurumları</h4>
-        <p>Kazı öncesi alan önceliklendirme ve koruma alanı planlaması için ön keşif raporu.</p>
-      </div>
-      <div class="audience-card reveal">
-        <h4>Maden &amp; Enerji Şirketleri</h4>
-        <p>Saha ziyareti öncesi alterasyon haritasıyla arama bütçesinin doğru bölgelere yönlendirilmesi.</p>
-      </div>
-      <div class="audience-card reveal">
-        <h4>Araştırma Kurumları &amp; Üniversiteler</h4>
-        <p>Geniş alan taramalarında saha zamanını en yüksek olasılıklı noktalara odaklama.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="sss">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow"><span class="dash"></span>SIKÇA SORULAN SORULAR</div>
-      <h2>Uzaktan algılama ve prospeksiyon hakkında</h2>
-    </div>
-
-    <details class="faq-block">
-      <summary>Uzaktan algılama ile arkeolojik sit tespiti nasıl yapılır?</summary>
-      <div class="faq-body">Çok bantlı uydu görüntüleri (Sentinel-2, Planet), dijital yükseklik modeli (DEM) ve LiDAR/InSAR verileri bir araya getirilir. Termal, vejetasyon ve mikro-topografik anomaliler makine öğrenmesi modelleriyle puanlanarak, yüzeyde görünmeyen yapı ve yerleşim izleri önceliklendirilir. Bu bir ön keşif yöntemidir; nihai doğrulama her zaman sahada yapılır.</div>
-    </details>
-
-    <details class="faq-block">
-      <summary>Jeofizik prospeksiyon ve maden alterasyon haritalaması nedir?</summary>
-      <div class="faq-body">Prospeksiyon, bir bölgede maden potansiyelini uzaktan değerlendirme sürecidir. Planet uydu görüntülerinden elde edilen spektral imzalar, bilinen mineral alterasyon referanslarıyla karşılaştırılarak potansiyel maden hedefleri ve alterasyon oranları haritalanır. Bu, saha arama bütçesinin doğru bölgelere yönlendirilmesini sağlar.</div>
-    </details>
-
-    <details class="faq-block">
-      <summary>Analiz sonuçları resmi bir kazı veya arama izni yerine geçer mi?</summary>
-      <div class="faq-body">Hayır. Vestigia'nın ürettiği çıktılar yalnızca masa başı ön değerlendirme niteliğindedir. Arkeolojik saha müdahalesi için ilgili Kültür Varlıklarını Koruma Bölge Kurulu ve Kültür ve Turizm Bakanlığı'ndan; maden arama faaliyeti için ise MAPEG'den usulüne uygun ruhsat ve izin alınması zorunludur. Detaylar için <a href="#kvkk" style="color:var(--teal);">Yasal Uyarı</a> bölümüne bakabilirsiniz.</div>
-    </details>
-
-    <details class="faq-block">
-      <summary>Hizmetin maliyeti nedir?</summary>
-      <div class="faq-body">Bireysel taramalarda ücret, tarama alanına (dönüm başına 5.000 TL) ve seçilen analiz paketine (Standart, Pro veya VIP) göre hesaplanır; toplamı Fiyatlandırma bölümündeki hesaplayıcıda anında görebilirsiniz. Kurumsal çalışmalar için ihtiyaca özel yazılı teklif sunulur.</div>
-    </details>
-
-    <details class="faq-block">
-      <summary>Hangi kurumlar bu hizmeti kullanabilir?</summary>
-      <div class="faq-body">Müzeler ve kültür varlıkları koruma kurumları, kazı ruhsatına sahip üniversite ve araştırma heyetleri, maden arama ruhsatı bulunan şirketler ile akademik araştırma kurumları. Hizmetlerimiz yalnızca bu izinlere sahip veya izin sürecini yürüten kurumsal müşterilere yöneliktir.</div>
-    </details>
-
-    <details class="faq-block">
-      <summary>Analizlerde hangi veri kaynakları ve yöntemler kullanılıyor?</summary>
-      <div class="faq-body">Sentinel-2 (çok bantlı optik), Sentinel-1 (InSAR koherens), Planet SkySat ve Copernicus DEM verileri Google Earth Engine üzerinden derlenir. Bunlara termal analiz, NDVI/vejetasyon indeksleri, morfolojik (hillshade, sky-view factor, local relief) katmanlar ve makine öğrenmesi tabanlı sınıflandırma (PCA) eklenerek çok katmanlı bir anomali skoru üretilir.</div>
-    </details>
   </div>
 </section>
 
