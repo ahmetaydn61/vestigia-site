@@ -156,6 +156,8 @@
     background:var(--amber);
     box-shadow:0 0 12px 2px rgba(232,163,61,0.6);
   }
+  .logo .logo-img{height:38px; width:auto; display:block; filter:drop-shadow(0 0 10px rgba(232,163,61,0.25));}
+  .footer-logo{height:84px; width:auto; display:block; opacity:0.95;}
   .navlinks{display:flex; gap:36px; align-items:center;}
   .navlinks a{
     font-size:0.95rem; color:var(--text-dim);
@@ -622,7 +624,7 @@
 
 <header>
   <div class="nav">
-    <div class="logo"><span class="mark"></span>Vestigia</div>
+    <a href="#" class="logo" aria-label="Vestigia ana sayfa"><img class="logo-img" src="logo-mark.png" alt="Vestigia logosu" width="46" height="38">Vestigia</a>
     <nav class="navlinks">
       <a href="#hizmetler">Hizmetler</a>
       <a href="#surec">Süreç</a>
@@ -1145,7 +1147,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="logo" style="font-size:1.05rem;"><span class="mark"></span>Vestigia</div>
+    <img class="footer-logo" src="logo-full.png" alt="Vestigia — Remote Sensing &amp; Prospection" loading="lazy">
     <span class="fine">© 2026 Vestigia. Tüm hakları saklıdır.</span>
   </div>
 </footer>
