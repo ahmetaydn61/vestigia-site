@@ -134,6 +134,14 @@
     z-index:0;
   }
 
+  /* ---------- SABİT ARKA PLAN LOGOSU ---------- */
+  .bg-logo{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:url('logo-full.png') center center / contain no-repeat;
+    margin:8vh 6vw;
+    opacity:0.10;
+  }
+
   /* ---------- HEADER ---------- */
   header{
     position:sticky; top:0; z-index:50;
@@ -622,6 +630,8 @@
 </head>
 <body>
 
+<div class="bg-logo" aria-hidden="true"></div>
+
 <header>
   <div class="nav">
     <a href="#" class="logo" aria-label="Vestigia ana sayfa"><img class="logo-img" src="logo-mark.png" alt="Vestigia logosu" width="46" height="38">Vestigia</a>
@@ -767,7 +777,7 @@
   </div>
 </section>
 
-<section class="section" id="surec" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<section class="section" id="surec" style="background:rgba(16,24,43,0.78); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow"><span class="dash"></span>SÜREÇ</div>
@@ -998,7 +1008,7 @@
   </div>
 </section>
 
-<section class="section" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<section class="section" style="background:rgba(16,24,43,0.78); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow"><span class="dash"></span>KİMLER İÇİN</div>
