@@ -466,6 +466,17 @@
     margin-top:10px;
   }
 
+  /* ---------- TEST AREAS ---------- */
+  .test-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:20px;}
+  .test-item{grid-column:span 2; margin:0;}
+  .test-item:nth-child(n+4){grid-column:span 3;}
+  .test-item a{display:block; border:1px solid var(--line); border-radius:2px; overflow:hidden; background:var(--bg-panel);}
+  .test-item a:hover{border-color:var(--amber);}
+  .test-item img{width:100%; aspect-ratio:1/1; object-fit:cover; display:block;}
+  .test-item figcaption{margin-top:10px; font-family:var(--font-mono); font-size:0.78rem; color:var(--text-faint);}
+  .test-item figcaption b{color:var(--amber); font-weight:500; margin-right:8px;}
+  .test-note{margin-top:24px; font-size:0.86rem; color:var(--text-faint); max-width:78ch;}
+
   /* ---------- AUDIENCE ---------- */
   .audience-grid{
     display:grid;
@@ -590,6 +601,9 @@
     .cap-grid{grid-template-columns:1fr;}
     .audience-grid{grid-template-columns:1fr;}
     .calc-grid{grid-template-columns:1fr;}
+    .test-grid{grid-template-columns:repeat(2,1fr); gap:14px;}
+    .test-item, .test-item:nth-child(n+4){grid-column:span 1;}
+    .test-item:last-child{grid-column:span 2;}
     .calc-panel{padding:28px 20px;}
     .opt ul{grid-template-columns:1fr;}
     .contact-panel{grid-template-columns:1fr; padding:32px 24px;}
@@ -860,6 +874,39 @@
         <div class="case-note">Crop-mark skoru + termal z-skor çapraz doğrulama</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section" id="test-alanlari">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>TEST ALANLARI</div>
+      <h2>Test alanlarından çıktılar</h2>
+      <p>Yöntemi denediğimiz test alanlarından analiz haritaları. Görsellere tıklayarak büyütebilirsiniz.</p>
+    </div>
+    <div class="test-grid">
+      <figure class="test-item reveal">
+        <a href="test-alani-1.jpg" target="_blank" rel="noopener"><img src="test-alani-1.jpg" alt="Test alanı 1: renk skalalı analiz haritasında kırmızı ve sarı odaklar" loading="lazy"></a>
+        <figcaption><b>01</b>Test alanı 1</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-2.jpg" target="_blank" rel="noopener"><img src="test-alani-2.jpg" alt="Test alanı 2: koyu renk skalalı analiz haritasında turuncu ve sarı odaklar" loading="lazy"></a>
+        <figcaption><b>02</b>Test alanı 2</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-3.jpg" target="_blank" rel="noopener"><img src="test-alani-3.jpg" alt="Test alanı 3: yeşil zemin üzerinde merkezde kırmızı bir odak" loading="lazy"></a>
+        <figcaption><b>03</b>Test alanı 3</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-4.jpg" target="_blank" rel="noopener"><img src="test-alani-4.jpg" alt="Test alanı 4: sağ üstte kırmızı ve sarı bir odak içeren analiz haritası" loading="lazy"></a>
+        <figcaption><b>04</b>Test alanı 4</figcaption>
+      </figure>
+      <figure class="test-item reveal">
+        <a href="test-alani-5.jpg" target="_blank" rel="noopener"><img src="test-alani-5.jpg" alt="Test alanı 5: merkezdeki kırmızı odak dikdörtgenle, üstteki küçük odak daire ve okla işaretlenmiş" loading="lazy"></a>
+        <figcaption><b>05</b>Test alanı 5</figcaption>
+      </figure>
+    </div>
+    <p class="test-note reveal">Görseller çıktı biçimini göstermek içindir; bulgu, kazı veya arama izni yerine geçmez. Saha doğrulaması ayrıca yapılmalıdır.</p>
   </div>
 </section>
 
