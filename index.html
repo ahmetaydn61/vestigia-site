@@ -496,6 +496,11 @@
   .an-card p{font-size:0.9rem; color:var(--text-dim);}
   .an-note{margin-top:22px; font-size:0.84rem; color:var(--text-faint);}
 
+  /* ---------- TANITIM VİDEOSU ---------- */
+  .video-wrap{max-width:960px; margin:0 auto; border:1px solid var(--line); background:#000; border-radius:2px; overflow:hidden;}
+  .video-wrap video{width:100%; height:auto; display:block; aspect-ratio:16/9; background:#000;}
+  .video-note{max-width:960px; margin:14px auto 0; font-size:0.82rem; color:var(--text-faint);}
+
   /* ---------- HAKKIMIZDA BANDI ---------- */
   .about-band{padding:64px 0; border-bottom:1px solid var(--line);}
   .about-band .eyebrow{margin-bottom:18px;}
@@ -785,6 +790,23 @@
   <div class="wrap reveal">
     <div class="eyebrow"><span class="dash"></span>HAKKIMIZDA</div>
     <p>2018’den beri uzman kadro ve teknik ekibimizle yer altındaki ve yer üstündeki izleri bilimin ışığında gün yüzüne çıkarıyoruz.</p>
+  </div>
+</section>
+
+<section class="section" id="tanitim">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dash"></span>TANITIM</div>
+      <h2>Vestigia ne yapar?</h2>
+      <p>Uydu verisinden sahaya giden yolu kısaca izleyin.</p>
+    </div>
+    <div class="video-wrap reveal">
+      <video controls playsinline preload="metadata" poster="tanitim-poster.jpg" aria-label="Vestigia tanıtım videosu">
+        <source src="tanitim-video.mp4" type="video/mp4">
+        Tarayıcınız video oynatmayı desteklemiyor.
+      </video>
+    </div>
+    <p class="video-note">Videodaki görüntüler yapay zekâ ile üretilmiş örnek gösterimlerdir; gerçek analiz çıktıları için Analizler bölümüne bakınız.</p>
   </div>
 </section>
 
